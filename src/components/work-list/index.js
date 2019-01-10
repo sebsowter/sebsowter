@@ -7,7 +7,7 @@ import WorkItem from '../work-item';
 import './styles.css';
 
 export const WorkList = ({ items }) => 
-	<div className={ 'work-list' }>
+	<div className="work-list">
 		{
 			items.map((item, index) => 
 				<WorkItem
@@ -24,10 +24,8 @@ WorkList.propTypes = {
     items: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => (
-    {
-        items: selectWorkItems(state)
-    }
-);
+const mapStateToProps = (state) => ({
+	items: selectWorkItems(state)
+});
 
 export default connect(mapStateToProps)(WorkList);
