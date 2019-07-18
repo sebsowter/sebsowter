@@ -1,54 +1,67 @@
 import * as PIXI from 'pixi.js'
 
-export class Sprio {
-  constructor (container, radius) {
+export class SprioGraph {
+  constructor (radius) {
     const lineWidth = 2;
     const lineColor = 0xcccccc;
-    const span = 20 + (Math.floor(Math.random() * 30) * 2);
-    const radius1 = radius - span - (lineWidth / 2);
-    const radius2 = span;
-    const ratio = ((4 + Math.floor(Math.random() * 8)) * 2) - 1;
-    //const inc = Math.PI / Math.pow(2, 6 + Math.floor(Math.random() * 4));
+    const patternWidth = 20 + Math.floor(Math.random() * 60);
+    const radius1 = radius - patternWidth - (lineWidth / 2);
+    const radius2 = patternWidth;
     const inc = Math.PI / 512;
     const isHypotrochoid = Math.random() < 0.5;
-    const pointStart = new PIXI.Point(isHypotrochoid ? radius1 + radius2 : radius1 - radius2, 0);
-    const point = new PIXI.Point(pointStart.x, pointStart.y);
+    const ratioRandom = 4 * (1 + Math.floor(Math.random() * 3));
+    const ratio = ratioRandom + (isHypotrochoid ? 1 : -1);
     const graphics = new PIXI.Graphics();
 
     graphics.lineStyle(lineWidth, lineColor);
-    graphics.moveTo(point.x, point.y);
+    graphics.moveTo(radius1 + (isHypotrochoid ? radius2 : -radius2), 0);
     
     for (let theta = inc; theta < Math.PI * 2; theta += inc) {
       const x1 = radius1 * Math.cos(theta);
       const x2 = radius2 * Math.cos(theta * ratio);
-      const x = isHypotrochoid ? x1 + x2 : x1 - x2;
-      const y = radius1 * Math.sin(theta) + radius2 * Math.sin(theta * ratio);
+      const x = x1 + (isHypotrochoid ? x2 : -x2);
+      const y1 = radius1 * Math.sin(theta);
+      const y2 = radius2 * Math.sin(theta * ratio);
+      const y = y1 + y2;
 
-      point.set(x, y);
-      graphics.lineTo(point.x, point.y);
+      graphics.lineTo(x, y);
     }
 
-    graphics.lineTo(pointStart.x, pointStart.y);
+    return graphics;
+  }
+}
 
-    container.addChild(graphics);
+export class ConcentricCircles {
+  constructor (radius) {
+    const lineWidthList = [5, 10, 25, 50, 100];
+    const lineWidthIndex = Math.floor(Math.random() * lineWidthList.length);
+    const lineWidth = lineWidthList[lineWidthIndex];
+    const colorList = [0x111111, 0xffffff];
+    const graphics = new PIXI.Graphics();
+
+    for (let i = 0; i < radius / lineWidth; i++) {
+      graphics.beginFill(colorList[i % 2]);
+      graphics.drawCircle(0, 0, radius - (i * lineWidth));
+      graphics.endFill();
+    }
 
     return graphics;
   }
 }
 
 export class Circles {
-  constructor (container, radius) {
-    const values = [5, 10, 20, 25, 50, 100];
-    const inc = values[Math.floor(Math.random() * values.length)];
+  constructor (radius) {
+    const circlesTotal = 4 * (1 + Math.floor(Math.random() * 3));
+    const circlesRadius = 8 + Math.floor(Math.random() * 32);
     const graphics = new PIXI.Graphics();
+    const segment = Math.PI * 2 / circlesTotal;
 
-    for (let i = 0; i < radius / inc; i++) {
-      graphics.beginFill(i % 2 == 0 ? 0x111111 : 0xffffff);
-      graphics.drawCircle(i * 0, i * 0, radius - (i * inc));
-      graphics.endFill();
+    for (let i = 0; i < circlesTotal; i++) {
+      graphics.beginFill(0x111111);
+      graphics.drawCircle((radius - circlesRadius) * Math.cos(i * segment), (radius - circlesRadius) * Math.sin(i * segment), circlesRadius);
     }
 
-    container.addChild(graphics);
+    graphics.endFill();
 
     return graphics;
   }
@@ -56,45 +69,60 @@ export class Circles {
 
 export default class {
   constructor (element) {
-    const dimension = 200;
-    const dimensionHalf = dimension / 2;
-    const container = new PIXI.Container();
+    const width = 200;
     const app = new PIXI.Application({ 
-      width: dimension,
-      height: dimension,
+      width,
+      height: width,
       antialias: true,
-      transparent: false,
-      resolution: 1,
-      backgroundColor: 0xffffff
+      transparent: true,
+      resolution: 1
     });
 
-    container.x = dimensionHalf;
-    container.y = dimensionHalf;
+    this.radius = width / 2;
+
+    this.container = new PIXI.Container();
+    this.container.x = this.radius;
+    this.container.y = this.radius;
 
     element.appendChild(app.view);
     element.addEventListener('click', () => {
-      this.createArt(container, dimensionHalf);
+      this.createArt();
     });
 
-    app.stage.addChild(container);
+    app.stage.addChild(this.container);
 
-    this.createArt(container, dimensionHalf);
+    this.createArt();
   }
   
-  createArt(container, dimensionHalf) {
-    const choice = Math.floor(Math.random() * 4);
+  startInterval() {
+    clearInterval(this.interval);
+
+    this.interval = setInterval(() => this.createArt(), 5000);
+  }
+  
+  createArt() {
+    this.startInterval();
 
     if (this.art) {
+      this.container.removeChild(this.art);
       this.art.destroy();
     }
     
+    this.art = this.getArt(this.radius);
+
+    this.container.addChild(this.art);
+  }
+  
+  getArt(radius) {
+    const choice = Math.floor(Math.random() * 4);
+    
     switch (choice) {
       case 3:
-        this.art = new Circles(container, dimensionHalf);
-        break;
+        return new ConcentricCircles(radius);
+      case 2:
+        return new Circles(radius);
       default:
-        this.art = new Sprio(container, dimensionHalf);
-        break;
+        return new SprioGraph(radius);
     }
   }
 }
