@@ -4,7 +4,6 @@ import WorkList from '../../components/work-list';
 
 export const Home = () =>
 	<div className="page page--home">
-		<Hero/>
 		<div className="wrapper">
 			<WorkList/>
 		</div>

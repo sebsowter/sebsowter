@@ -8,7 +8,7 @@ export const Header = () =>
   <header className="header">
     <div className="wrapper">
       <div className="grid">
-        <div className="col-9 logo">
+        <div className="col-9 logo padding-x">
           <Link to={ PATHS.HOME }>
             <h1>Seb Sowter</h1>
           </Link>
