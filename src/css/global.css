@@ -1,0 +1,157 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+}
+
+body {
+	width: 100%;
+  font-family: aktiv-grotesk, sans-serif;
+  background-color: #ffffff;
+  font-size: 1em;
+	color: #111111;
+}
+
+img {
+	display: block;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+  font-style: normal;
+	line-height: 1.2;
+}
+
+h1 {
+	font-style: normal;
+  font-weight: 900;
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+	color: #111111;
+}
+
+h2 {
+	font-style: normal;
+  font-weight: 700;
+	font-size: 1rem;
+	margin-bottom: 16px;
+	color: #111111;
+	text-transform: uppercase;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: 900;
+	font-size: 1.8  rem;
+  margin-bottom: 12px;
+  line-height: 1.1;
+	color: #111111;
+}
+
+.h4 {
+  font-style: normal;
+  font-weight: 400;
+	font-size: 0.85rem;
+  color: #cccccc;
+  margin-bottom: 16px;
+  margin-top: 16px;
+	text-transform: uppercase;
+}
+
+h5 {
+	padding: 30px 0 0;
+	color: #111111;
+	font-size: 1.3rem;
+  font-weight: 700;
+  font-style: normal;
+	text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+h6 {
+	padding: 0 0 4px;
+	color: #111111;
+	font-size: 0.8rem;
+  font-weight: 700;
+  font-style: normal;
+	text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+p {
+	font-size: 0.9rem;
+	line-height: 1.4;
+  font-style: normal;
+  font-weight: 400;
+	margin: 0 0 16px;
+	color: #444444;
+}
+
+strong {
+	font-weight: bold;
+}
+
+button {
+	font-family: 'europa', sans-serif;
+}
+
+hr {
+	position: relative;
+	margin: 30px 0;
+	padding: 0;
+	border: 0;
+	height: 16px;
+	width: 100%;
+}
+
+a {
+	transition: .333s color;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+  color: #111111;
+  text-decoration: none;
+}
+
+.padding-horizontal {
+	width: 100%;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.grid {
+	display: flex;
+}
+
+.col-3 {
+	flex: 0 0 25%;
+}
+
+.col-4 {
+	flex: 0 0 33.3333%;
+}
+
+.col-6 {
+	flex: 0 0 50%;
+}
+
+.col-8 {
+	flex: 0 0 66.6667%;
+}
+
+.col-9 {
+	flex: 0 0 75%;
+}
+
+.paragraph {
+  width: calc(1 / 12 * 11 * 100%);
+}

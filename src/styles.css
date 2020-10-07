@@ -1,0 +1,48 @@
+#root {
+  position: relative;
+  width: 100%;
+}
+
+.app {
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+	max-width: 1220px;
+  padding: 0 8px;
+}
+
+@media screen and (min-width: 480px) {
+  .wrapper {
+    padding: 0 16px;
+  }
+}
+
+.padding-x {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.page--info {
+  padding-top: 240px;
+}
+
+.page--work {
+  padding-top: 240px;
+}
+
+.intro {
+  margin-right: 37.5%;
+  color: #111111;
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 48px;
+}

@@ -1,0 +1,58 @@
+.contact {
+	width: 100%;
+	padding: 48px 0;
+	margin-bottom: 64px;
+}
+
+.contact ul {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 32px;
+}
+
+.contact ul li {
+	display: inline-block;
+	vertical-align: top;
+	border-right: 0 solid #ddd;
+	padding: 0 16px 0 0;
+}
+
+.contact ul li:last-child {
+	border-right: none;
+}
+
+.contact ul li a {
+	position: relative;
+	display: inline-block;
+	padding: 4px 0;
+}
+
+.contact ul li a,
+.contact ul li a:link,
+.contact ul li a:visited,
+.contact ul li a:active {
+    color: #999999;
+}
+
+.contact ul li a:hover,
+.contact ul li a:focus {
+    color: #111111;
+}
+
+.contact ul li a::before {
+	content: '';
+	position: absolute;
+	display: block;
+	bottom: 0;
+	left: 50%;
+	height: 1px;
+	width: 100%;
+	background-color: #111111;
+	transform: translateX(-50%) scale(0);
+	transition: .333s transform ease-out;
+}
+
+.contact ul li a:hover::before,
+.contact ul li a:focus::before {
+	transform: translateX(-50%) scale(1);
+}
