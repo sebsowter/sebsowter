@@ -3,4 +3,4 @@ Building web apps with [TypeScript](https://www.typescriptlang.org/) and [React]
 
 | [![Wipeout](https://github.com/sebsowter/sebsowter/assets/7384630/a5c075e9-68df-41e4-89c8-e791a7ed0271)](https://sebsowter.github.io/wipeout/) | [![pinball](https://github.com/sebsowter/sebsowter/assets/7384630/59c4c820-d61c-4190-8c3b-00627349f223)](https://sebsowter.github.io/wipeout/) |
 | :- | :- |
-| [React Three Fiber Wipeout Experiment](https://sebsowter.github.io/wipeout/) | [1-Bit Pinball Phaser Game]([https://sebsowter.github.io/wipeout/](https://calabi.itch.io/1-bit-pinball)) |
+| [React Three Fiber Wipeout Experiment](https://sebsowter.github.io/wipeout/) | [1-Bit Pinball Phaser Game]([https://sebsowter.github.io/wipeout/](https://calabi.itch.io/1-bit-pinball) |
